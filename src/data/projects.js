@@ -44,7 +44,7 @@ export const projects = [
     // ── REPLACE THIS WITH YOUR VIMEO/YOUTUBE EMBED URL ────────
     // Example Vimeo:   https://player.vimeo.com/video/123456789
     // Example YouTube: https://www.youtube.com/embed/dQw4w9WgXcQ
-    videoEmbedUrl: 'https://vimeo.com/1190775920?share=copy&fl=sv&fe=ci',
+    videoEmbedUrl: 'https://player.vimeo.com/video/1190775920',
     // ── REPLACE WITH YOUR THUMBNAIL ───────────────────────────
     // Or use: '/thumbnails/feedbask.jpg' (image in /public/thumbnails/)
     thumbnailUrl: 'https://i.vimeocdn.com/video/452001751-b57ff30c3a40ea5e2f3e53ffe7f8e08bf8904d73124e9f2e2b1c8dc65e2e9f88_1280x720.jpg',
