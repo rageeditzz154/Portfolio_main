@@ -117,7 +117,7 @@ export default function Footer() {
             &copy; {year} Cinova Visuals. All rights reserved.
           </p>
           <p className="text-ink-subtle text-[0.72rem]">
-            SaaS Motion Design
+            Motion Design for SaaS
           </p>
         </div>
       </div>

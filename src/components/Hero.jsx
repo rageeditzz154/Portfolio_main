@@ -69,7 +69,7 @@ export default function Hero() {
           <motion.div variants={itemVariants} className="mb-6">
             <span className="tag-pill">
               <span className="w-1.5 h-1.5 rounded-full bg-accent-blue mr-2 inline-block" />
-              Motion Design Studio
+              Motion Designer
             </span>
           </motion.div>
 
@@ -92,8 +92,8 @@ export default function Hero() {
             className="font-body text-ink-muted text-[clamp(1rem,1.5vw,1.15rem)]
                        leading-relaxed max-w-xl mb-10"
           >
-            Premium SaaS explainers, product launch videos, and UI animations
-            crafted for founders who want their products to stand out.
+            I create SaaS explainers, product launch videos, and UI animations
+            that help founders make their products stand out.
           </motion.p>
 
           {/* CTA Buttons */}

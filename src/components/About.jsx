@@ -68,14 +68,14 @@ export default function About() {
           >
             <div className="space-y-4 text-ink-muted leading-relaxed text-[0.92rem]">
               <p>
-                I&apos;m a motion designer building{' '}
+                Hey, I&apos;m the creator behind{' '}
                 <span className="text-ink-primary font-medium">Cinova Visuals</span>
-                {' '}— a studio focused on premium motion design for
-                SaaS products and tech startups.
+                . I craft motion design for SaaS products, startups, and
+                anyone who wants their product to truly move.
               </p>
               <p>
-                I specialize in turning complex products into compelling
-                visual stories through SaaS explainers, product launches, and UI animations.
+                I turn complex ideas into compelling visual stories through
+                explainer videos, product launches, and smooth UI animations.
               </p>
             </div>
 

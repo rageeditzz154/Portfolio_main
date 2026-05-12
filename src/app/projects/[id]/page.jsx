@@ -115,7 +115,7 @@ export default function VideoDetailPage() {
             {/* CTA */}
             <div className="flex flex-wrap gap-3 pt-6 border-t border-[rgba(255,255,255,0.06)]">
               <p className="text-ink-muted text-[0.9rem] mr-4">
-                Want something similar?
+                Like this style? Let&apos;s talk.
               </p>
               <a
                 href="https://cal.com/cinova-visuals/30-minute-meeting"

@@ -49,11 +49,11 @@ export default function ProjectsPage() {
               </p>
               <h1 className="font-display font-800 text-[clamp(2.2rem,5vw,4rem)]
                              leading-[1] tracking-tight text-ink-primary mb-4">
-                Complete Portfolio
+                My Work
               </h1>
               <p className="text-ink-muted text-[0.95rem] max-w-xl leading-relaxed">
-                A collection of SaaS explainers, product launch videos, UI animations, 
-                and motion design projects. Click any project to watch the full video.
+                A collection of motion design projects including SaaS explainers, 
+                product videos, and UI animations. Click any project to watch.
               </p>
             </motion.div>
 
@@ -72,7 +72,7 @@ export default function ProjectsPage() {
               className="mt-16 text-center"
             >
               <p className="text-ink-muted text-[0.92rem] mb-4">
-                Interested in working together?
+                Like what you see? Let&apos;s create something together.
               </p>
               <a
                 href="https://cal.com/cinova-visuals/30-minute-meeting"
