@@ -8,13 +8,13 @@
 import { motion } from 'framer-motion'
 import { projects } from '../../../data/projects'
 import Link from 'next/link'
-import { use } from 'react'
+import { useParams } from 'next/navigation'
 import CustomCursor from '../../../components/CustomCursor'
 import CursorGlow from '../../../components/CursorGlow'
 
-export default function VideoDetailPage({ params }) {
-  const resolvedParams = use(params)
-  const project = projects.find(p => p.id === resolvedParams.id)
+export default function VideoDetailPage() {
+  const { id } = useParams()
+  const project = projects.find(p => p.id === id)
 
   if (!project) {
     return (
