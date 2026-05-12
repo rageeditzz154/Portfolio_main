@@ -2,30 +2,40 @@
 
 // ─────────────────────────────────────────────────────────────
 // CUSTOM CURSOR — src/components/CustomCursor.jsx
-// A minimal dot cursor that follows the mouse with smooth motion.
+// A series of trailing dots that follow the cursor
 // Disabled on mobile/touch devices automatically.
 // ─────────────────────────────────────────────────────────────
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { motion, useSpring } from 'framer-motion'
+
+const DOT_COUNT = 5
+const DOT_SIZES = [10, 8, 6, 4, 3]
+const DOT_DELAYS = [0, 0.02, 0.04, 0.06, 0.08]
 
 export default function CustomCursor() {
   const [mounted, setMounted] = useState(false)
   const [isTouch, setIsTouch] = useState(false)
   const [isHovering, setIsHovering] = useState(false)
   const [isClicking, setIsClicking] = useState(false)
+  const mousePos = useRef({ x: 0, y: 0 })
 
-  const cursorX = useSpring(0, { stiffness: 500, damping: 28, mass: 0.5 })
-  const cursorY = useSpring(0, { stiffness: 500, damping: 28, mass: 0.5 })
+  // Create springs for each dot with different stiffness for trailing effect
+  const dots = Array.from({ length: DOT_COUNT }, (_, i) => ({
+    x: useSpring(0, { stiffness: 400 - i * 60, damping: 28 - i * 2, mass: 0.4 + i * 0.1 }),
+    y: useSpring(0, { stiffness: 400 - i * 60, damping: 28 - i * 2, mass: 0.4 + i * 0.1 }),
+  }))
 
   useEffect(() => {
-    // Detect touch/mobile — skip rendering the cursor
     setIsTouch(window.matchMedia('(hover: none)').matches)
     setMounted(true)
 
     const move = (e) => {
-      cursorX.set(e.clientX)
-      cursorY.set(e.clientY)
+      mousePos.current = { x: e.clientX, y: e.clientY }
+      dots.forEach((dot) => {
+        dot.x.set(e.clientX)
+        dot.y.set(e.clientY)
+      })
     }
 
     const handleMouseOver = (e) => {
@@ -67,7 +77,7 @@ export default function CustomCursor() {
       document.removeEventListener('mousedown', handleMouseDown)
       document.removeEventListener('mouseup', handleMouseUp)
     }
-  }, [cursorX, cursorY])
+  }, [dots])
 
   if (!mounted || isTouch) return null
 
@@ -80,54 +90,66 @@ export default function CustomCursor() {
         }
       `}</style>
 
-      {/* Dot cursor */}
-      <motion.div
-        aria-hidden
-        className="pointer-events-none fixed top-0 left-0 z-[100] mix-blend-difference"
-        style={{
-          x: cursorX,
-          y: cursorY,
-          translateX: '-50%',
-          translateY: '-50%',
-        }}
-      >
+      {/* Trailing dots */}
+      {dots.map((dot, i) => (
         <motion.div
-          className="rounded-full bg-white"
-          animate={{
-            width: isClicking ? 8 : isHovering ? 40 : 12,
-            height: isClicking ? 8 : isHovering ? 40 : 12,
-            opacity: isHovering ? 0.8 : 1,
+          key={i}
+          aria-hidden
+          className="pointer-events-none fixed top-0 left-0 z-[100] mix-blend-difference"
+          style={{
+            x: dot.x,
+            y: dot.y,
+            translateX: '-50%',
+            translateY: '-50%',
           }}
-          transition={{
-            type: 'spring',
-            stiffness: 400,
-            damping: 25,
-          }}
-        />
-      </motion.div>
+        >
+          <motion.div
+            className="rounded-full bg-white"
+            animate={{
+              width: isClicking 
+                ? DOT_SIZES[i] * 0.6 
+                : isHovering 
+                  ? (i === 0 ? 24 : DOT_SIZES[i] * 1.2) 
+                  : DOT_SIZES[i],
+              height: isClicking 
+                ? DOT_SIZES[i] * 0.6 
+                : isHovering 
+                  ? (i === 0 ? 24 : DOT_SIZES[i] * 1.2) 
+                  : DOT_SIZES[i],
+              opacity: isHovering ? 1 - i * 0.12 : 1 - i * 0.15,
+            }}
+            transition={{
+              type: 'spring',
+              stiffness: 500,
+              damping: 30,
+              delay: DOT_DELAYS[i],
+            }}
+          />
+        </motion.div>
+      ))}
 
       {/* Outer ring (appears on hover) */}
       <motion.div
         aria-hidden
-        className="pointer-events-none fixed top-0 left-0 z-[99]"
+        className="pointer-events-none fixed top-0 left-0 z-[99] mix-blend-difference"
         style={{
-          x: cursorX,
-          y: cursorY,
+          x: dots[0].x,
+          y: dots[0].y,
           translateX: '-50%',
           translateY: '-50%',
         }}
       >
         <motion.div
-          className="rounded-full border border-white/30"
+          className="rounded-full border border-white/40"
           animate={{
-            width: isHovering ? 50 : 0,
-            height: isHovering ? 50 : 0,
-            opacity: isHovering ? 1 : 0,
+            width: isHovering ? 40 : 0,
+            height: isHovering ? 40 : 0,
+            opacity: isHovering ? 0.6 : 0,
           }}
           transition={{
             type: 'spring',
             stiffness: 300,
-            damping: 20,
+            damping: 22,
           }}
         />
       </motion.div>
