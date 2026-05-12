@@ -7,18 +7,26 @@
 
 import { motion } from 'framer-motion'
 import { projects } from '../../../data/projects'
-import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { use } from 'react'
 import CustomCursor from '../../../components/CustomCursor'
 import CursorGlow from '../../../components/CursorGlow'
 
 export default function VideoDetailPage({ params }) {
-  const { id } = use(params)
-  const project = projects.find(p => p.id === id)
+  const resolvedParams = use(params)
+  const project = projects.find(p => p.id === resolvedParams.id)
 
   if (!project) {
-    notFound()
+    return (
+      <main className="relative min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-white mb-4">Project Not Found</h1>
+          <Link href="/projects" className="btn-primary">
+            Back to Projects
+          </Link>
+        </div>
+      </main>
+    )
   }
 
   return (
