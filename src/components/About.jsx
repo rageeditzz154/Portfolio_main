@@ -2,107 +2,80 @@
 
 // ─────────────────────────────────────────────────────────────
 // ABOUT SECTION — src/components/About.jsx
-// To edit: change the bio text, skills list, and tool stack below.
+// Clean about section without stats (no client work yet)
 // ─────────────────────────────────────────────────────────────
 
 import { motion } from 'framer-motion'
-import { stats } from '../data/projects'
 import { links } from '../data/links'
 
-// ── Skills / Capabilities — edit freely ─────────────────────
 const capabilities = [
   'SaaS Explainer Videos',
+  'Product Launch Videos',
   'UI Animation & Micro-interactions',
-  'Product Demo Production',
   'Motion System Design',
   'After Effects / Premiere Pro',
   'Lottie & Web Animation',
-  'Brand Motion Identity',
-  'Script & Storyboard',
 ]
 
-// ── Tool stack badges ─────────────────────────────────────────
 const tools = [
   'After Effects',
   'Premiere Pro',
   'Figma',
   'Framer',
-  'Motion 4',
   'Lottie',
 ]
-
-// Animation for cards stagger
-const cardVariants = {
-  hidden:  { opacity: 0, y: 20 },
-  visible: (i) => ({
-    opacity: 1, y: 0,
-    transition: { delay: i * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-  }),
-}
 
 export default function About() {
   return (
     <section id="about" className="section-py relative overflow-hidden">
-
-      {/* ── Background ────────────────────────────────────── */}
-      <div aria-hidden className="pointer-events-none absolute inset-0
-                                  bg-gradient-to-b from-transparent via-[rgba(14,14,16,0.6)] to-transparent" />
-
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
-        {/* ── Section Label ─────────────────────────────────── */}
+        {/* Section Label */}
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-accent-blue text-sm font-display font-600 tracking-[0.12em] uppercase mb-4"
+          className="text-accent-blue text-sm font-display font-600 tracking-[0.1em] uppercase mb-3"
         >
           About
         </motion.p>
 
-        {/* ── Top split: Headline + Bio ─────────────────────── */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-20">
+        {/* Headline + Bio */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-16">
 
           {/* Left — Headline */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.5 }}
           >
-            <h2 className="font-display font-800 text-[clamp(2rem,4vw,3.5rem)]
-                           leading-[1.0] tracking-tight text-ink-primary">
+            <h2 className="font-display font-800 text-[clamp(1.8rem,3.5vw,3rem)]
+                           leading-[1.1] tracking-tight text-ink-primary">
               Motion made for{' '}
-              <span className="text-gradient-warm">products</span>{' '}
+              <span className="text-gradient-blue">products</span>{' '}
               that mean business.
             </h2>
           </motion.div>
 
-          {/* Right — Bio + CTA */}
+          {/* Right — Bio */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-            className="flex flex-col justify-between gap-8"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="flex flex-col gap-6"
           >
-            {/* ── BIO TEXT — edit here ─────────────────────── */}
-            <div className="space-y-4 text-ink-muted leading-relaxed text-[0.95rem]">
+            <div className="space-y-4 text-ink-muted leading-relaxed text-[0.92rem]">
               <p>
-                I'm a self-taught motion designer building{' '}
+                Hey, I&apos;m the creator behind{' '}
                 <span className="text-ink-primary font-medium">Cinova Visuals</span>
-                {' '}— a studio focused on premium SaaS motion design for
-                indie hackers and bootstrapped founders.
+                . I craft motion design for SaaS products, startups, and
+                anyone who wants their product to truly move.
               </p>
               <p>
-                I specialize in turning complex SaaS products into compelling
-                visual stories. From storyboard to final render, every frame is
-                crafted to convert curious visitors into confident customers.
-              </p>
-              <p>
-                Based in India. Working globally. Fast, focused, and obsessed
-                with quality motion.
+                I turn complex ideas into compelling visual stories through
+                explainer videos, product launches, and smooth UI animations.
               </p>
             </div>
 
@@ -117,106 +90,54 @@ export default function About() {
           </motion.div>
         </div>
 
-        {/* ── Stats Row ─────────────────────────────────────── */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mb-20">
-          {stats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              custom={i}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="p-6 rounded-2xl border border-thin bg-bg-card text-center"
-            >
-              <div className="font-display text-[2rem] font-800 text-ink-primary leading-none mb-1.5">
-                {stat.value}
-              </div>
-              <div className="text-ink-muted text-[0.78rem] tracking-wide uppercase">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* ── Capabilities + Tools Row ──────────────────────── */}
+        {/* Capabilities + Tools */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
-          {/* Capabilities card */}
+          {/* Capabilities */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.65 }}
-            className="p-7 rounded-2xl border border-thin bg-bg-card"
+            transition={{ duration: 0.5 }}
+            className="p-6 rounded-xl border border-thin bg-bg-card"
           >
-            <h3 className="font-display font-700 text-[1rem] text-ink-primary mb-5 tracking-tight">
+            <h3 className="font-display font-700 text-[0.95rem] text-ink-primary mb-4">
               What I Do
             </h3>
             <ul className="space-y-2.5">
-              {capabilities.map((cap, i) => (
-                <li key={cap} className="flex items-center gap-3 text-[0.88rem] text-ink-muted">
-                  {/* Animated dot */}
-                  <span
-                    className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                    style={{ background: i % 2 === 0 ? '#5B8EF0' : '#9B7AF5' }}
-                  />
+              {capabilities.map((cap) => (
+                <li key={cap} className="flex items-center gap-3 text-[0.85rem] text-ink-muted">
+                  <span className="w-1 h-1 rounded-full bg-accent-blue flex-shrink-0" />
                   {cap}
                 </li>
               ))}
             </ul>
           </motion.div>
 
-          {/* Tools card + floating decoration */}
-          <div className="flex flex-col gap-5">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.65, delay: 0.1 }}
-              className="p-7 rounded-2xl border border-thin bg-bg-card"
-            >
-              <h3 className="font-display font-700 text-[1rem] text-ink-primary mb-5 tracking-tight">
-                Tool Stack
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {tools.map((tool) => (
-                  <span
-                    key={tool}
-                    className="px-3 py-1.5 rounded-lg text-[0.82rem] font-medium
-                               bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.07)]
-                               text-ink-muted hover:text-ink-primary hover:border-[rgba(255,255,255,0.14)]
-                               transition-all duration-200 cursor-default"
-                  >
-                    {tool}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Quote card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.65, delay: 0.18 }}
-              className="p-7 rounded-2xl border border-thin flex-1
-                         relative overflow-hidden"
-              style={{
-                background: 'linear-gradient(135deg, rgba(91,142,240,0.07) 0%, rgba(155,122,245,0.05) 100%)',
-              }}
-            >
-              {/* Large quote mark */}
-              <div className="absolute top-3 right-5 font-display text-[4rem] leading-none
-                               text-[rgba(255,255,255,0.04)] select-none pointer-events-none">
-                "
-              </div>
-              <p className="text-ink-muted text-[0.9rem] leading-relaxed italic">
-                Every SaaS product has a story worth telling. Motion is how you
-                make people feel it.
-              </p>
-            </motion.div>
-          </div>
+          {/* Tools */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="p-6 rounded-xl border border-thin bg-bg-card"
+          >
+            <h3 className="font-display font-700 text-[0.95rem] text-ink-primary mb-4">
+              Tool Stack
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {tools.map((tool) => (
+                <span
+                  key={tool}
+                  className="px-3 py-1.5 rounded-lg text-[0.8rem] font-medium
+                             bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.07)]
+                             text-ink-muted"
+                >
+                  {tool}
+                </span>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
