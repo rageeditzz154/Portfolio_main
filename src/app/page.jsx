@@ -6,20 +6,26 @@
 // To add a new section: import it and add it here.
 // ─────────────────────────────────────────────────────────────
 
-import Navbar    from '../components/Navbar'
-import Hero      from '../components/Hero'
-import Marquee   from '../components/Marquee'
-import Projects  from '../components/Projects'
-import About     from '../components/About'
-import Contact   from '../components/Contact'
-import Footer    from '../components/Footer'
-import CursorGlow from '../components/CursorGlow'
+import Navbar       from '../components/Navbar'
+import Hero         from '../components/Hero'
+import Marquee      from '../components/Marquee'
+import Projects     from '../components/Projects'
+import About        from '../components/About'
+import Contact      from '../components/Contact'
+import Footer       from '../components/Footer'
+import CursorGlow   from '../components/CursorGlow'
+import CustomCursor from '../components/CustomCursor'
+import SmoothScroll from '../components/SmoothScroll'
 
 export default function Home() {
   return (
+    <SmoothScroll>
     <main className="relative">
       {/* Ambient cursor glow (desktop only) */}
       <CursorGlow />
+
+      {/* Custom dot cursor (desktop only) */}
+      <CustomCursor />
 
       {/* Navigation */}
       <Navbar />
@@ -42,5 +48,6 @@ export default function Home() {
       {/* Footer */}
       <Footer />
     </main>
+    </SmoothScroll>
   )
 }
