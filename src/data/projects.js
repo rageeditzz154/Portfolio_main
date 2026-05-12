@@ -1,18 +1,40 @@
 // ─────────────────────────────────────────────────────────────
 // PROJECT DATA — src/data/projects.js
-// Edit projects here. They will appear on homepage (first 3) and projects page (all).
+// ─────────────────────────────────────────────────────────────
+// 
+// HOW TO ADD A NEW PROJECT:
+// 1. Copy one of the project objects below
+// 2. Paste it at the end (before the closing bracket)
+// 3. Update all the fields with your project info
+// 4. Add your thumbnail image to: public/thumbnails/
+// 5. Save this file - your project will appear automatically!
+//
 // ─────────────────────────────────────────────────────────────
 
 export const projects = [
   {
+    // UNIQUE ID - Use lowercase, no spaces (use dashes instead)
     id: 'gemini',
+    
+    // PROJECT TITLE - What you want to call this project
     title: 'Gemini Guided Learning',
+    
+    // CATEGORY - One of: 'SaaS Explainer', 'UI Animation', 'Product Launch', 'Concept Spec', 'Motion System'
     category: 'SaaS Explainer',
+    
+    // DESCRIPTION - 1-2 sentences about the project
     description: 'A motion concept for Gemini exploring how AI can make learning feel more interactive and intuitive. Showcasing smooth transitions and micro-interactions that guide users through complex information.',
+    
+    // VIDEO URL - Your Vimeo embed URL (get this from Vimeo share > embed)
     videoEmbedUrl: 'https://player.vimeo.com/video/1190775920',
+    
+    // THUMBNAIL - Path to your thumbnail image in public/thumbnails/
+    // Example: '/thumbnails/my-project.jpg' or '/thumbnails/my-project.png'
+    // Leave empty '' to use default placeholder
     thumbnailUrl: '',
+    
+    // TAGS - 2-3 short tags describing the work
     tags: ['Product Explainer', 'SaaS', 'UI Animation'],
-    accentColor: '#3b82f6',
   },
   {
     id: 'loops-so',
@@ -22,7 +44,6 @@ export const projects = [
     videoEmbedUrl: 'https://player.vimeo.com/video/148751763?autoplay=0&title=0&byline=0&portrait=0',
     thumbnailUrl: '',
     tags: ['Email SaaS', 'Motion System', 'Concept'],
-    accentColor: '#3b82f6',
   },
   {
     id: 'stripe-explainer',
@@ -32,7 +53,6 @@ export const projects = [
     videoEmbedUrl: 'https://player.vimeo.com/video/248688844?autoplay=0&title=0&byline=0&portrait=0',
     thumbnailUrl: '',
     tags: ['UI Animation', 'FinTech', 'Dashboard'],
-    accentColor: '#3b82f6',
   },
   {
     id: 'onboarding-motion',
@@ -42,17 +62,15 @@ export const projects = [
     videoEmbedUrl: 'https://player.vimeo.com/video/336812686?autoplay=0&title=0&byline=0&portrait=0',
     thumbnailUrl: '',
     tags: ['Motion System', 'Onboarding', 'UI Kit'],
-    accentColor: '#3b82f6',
   },
   {
     id: 'product-launch',
     title: 'Product Launch Video',
-    category: 'Launch Video',
+    category: 'Product Launch',
     description: 'A cinematic product launch video designed to create excitement and showcase key features with dynamic motion graphics and storytelling.',
     videoEmbedUrl: 'https://player.vimeo.com/video/336812686?autoplay=0&title=0&byline=0&portrait=0',
     thumbnailUrl: '',
     tags: ['Product Launch', 'Cinematic', 'SaaS'],
-    accentColor: '#3b82f6',
   },
   {
     id: 'micro-interactions',
@@ -62,11 +80,34 @@ export const projects = [
     videoEmbedUrl: 'https://player.vimeo.com/video/248688844?autoplay=0&title=0&byline=0&portrait=0',
     thumbnailUrl: '',
     tags: ['Micro-interactions', 'UI/UX', 'Details'],
-    accentColor: '#3b82f6',
   },
+
+  // ─────────────────────────────────────────────────────────────
+  // ADD YOUR NEW PROJECTS BELOW (copy the template):
+  // ─────────────────────────────────────────────────────────────
+  //
+  // {
+  //   id: 'your-project-id',
+  //   title: 'Your Project Title',
+  //   category: 'SaaS Explainer',
+  //   description: 'Describe your project in 1-2 sentences.',
+  //   videoEmbedUrl: 'https://player.vimeo.com/video/YOUR_VIDEO_ID',
+  //   thumbnailUrl: '/thumbnails/your-thumbnail.jpg',
+  //   tags: ['Tag 1', 'Tag 2', 'Tag 3'],
+  // },
+  //
+  // ─────────────────────────────────────────────────────────────
 ]
 
-// Get first 3 projects for homepage
+// Get first 3 projects for homepage featured section
 export const featuredProjects = projects.slice(0, 3)
 
-// No stats since no client work yet - removed as requested
+// Available categories for filtering (if you add filtering later)
+export const categories = [
+  'All',
+  'SaaS Explainer',
+  'UI Animation',
+  'Product Launch',
+  'Concept Spec',
+  'Motion System',
+]

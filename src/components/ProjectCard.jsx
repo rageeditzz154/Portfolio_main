@@ -2,15 +2,19 @@
 
 // ─────────────────────────────────────────────────────────────
 // PROJECT CARD — src/components/ProjectCard.jsx
-// Click to open full video detail page
+// Displays project thumbnail, title, and info. Clicks to detail page.
 // ─────────────────────────────────────────────────────────────
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function ProjectCard({ project, index }) {
   const [hovered, setHovered] = useState(false)
+  const [imageError, setImageError] = useState(false)
+
+  const hasThumbnail = project.thumbnailUrl && !imageError
 
   return (
     <Link href={`/projects/${project.id}`}>
@@ -31,7 +35,7 @@ export default function ProjectCard({ project, index }) {
           transition: 'all 0.25s ease',
         }}
       >
-        {/* Hover glow */}
+        {/* Hover glow effect */}
         <motion.div
           className="absolute inset-0 rounded-xl pointer-events-none z-0"
           animate={{ opacity: hovered ? 1 : 0 }}
@@ -41,67 +45,91 @@ export default function ProjectCard({ project, index }) {
           }}
         />
 
-        <div className="relative z-10 p-5">
-          {/* Category */}
-          <div className="flex items-center justify-between mb-4">
-            <span className="tag-pill">{project.category}</span>
-            <motion.div
-              animate={{ x: hovered ? 4 : 0 }}
-              transition={{ duration: 0.2 }}
-              className="text-ink-subtle"
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M4 12L12 4M12 4H6M12 4v6" stroke="currentColor" 
-                  strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </motion.div>
-          </div>
-
-          {/* Video Thumbnail/Preview */}
-          <div className="relative aspect-video mb-4 rounded-lg overflow-hidden bg-bg-secondary">
-            {/* Play icon overlay */}
+        <div className="relative z-10">
+          {/* Thumbnail Section */}
+          <div className="relative aspect-video overflow-hidden bg-bg-secondary">
+            {hasThumbnail ? (
+              <Image
+                src={project.thumbnailUrl}
+                alt={`${project.title} thumbnail`}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                onError={() => setImageError(true)}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
+            ) : (
+              // Placeholder when no thumbnail
+              <div className="absolute inset-0 bg-gradient-to-br from-bg-elevated to-bg-card flex items-center justify-center">
+                <div className="text-center">
+                  <svg 
+                    width="40" 
+                    height="40" 
+                    viewBox="0 0 24 24" 
+                    className="text-ink-subtle/50 mx-auto mb-2"
+                  >
+                    <path d="M8 5v14l11-7z" fill="currentColor"/>
+                  </svg>
+                  <span className="text-ink-subtle/40 text-xs font-medium">
+                    {project.category}
+                  </span>
+                </div>
+              </div>
+            )}
+            
+            {/* Play icon overlay on hover */}
             <div className="absolute inset-0 flex items-center justify-center bg-black/40 
                             opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-              <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm 
-                              flex items-center justify-center border border-white/20">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+              <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-sm 
+                              flex items-center justify-center border border-white/20
+                              transform scale-90 group-hover:scale-100 transition-transform duration-200">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
                   <path d="M8 5v14l11-7z"/>
                 </svg>
               </div>
             </div>
-            
-            {/* Vimeo thumbnail or placeholder */}
-            <div className="absolute inset-0 bg-gradient-to-br from-bg-elevated to-bg-card" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <svg width="32" height="32" viewBox="0 0 24 24" className="text-ink-subtle">
-                <path d="M8 5v14l11-7z" fill="currentColor"/>
-              </svg>
+
+            {/* Category badge */}
+            <div className="absolute top-3 left-3">
+              <span className="tag-pill text-[0.68rem]">{project.category}</span>
             </div>
           </div>
 
-          {/* Title */}
-          <h3 className="font-display text-lg font-700 text-ink-primary mb-2 tracking-tight
-                         group-hover:text-white transition-colors">
-            {project.title}
-          </h3>
-
-          {/* Description */}
-          <p className="text-ink-muted text-[0.85rem] leading-relaxed line-clamp-2 mb-4">
-            {project.description}
-          </p>
-
-          {/* Tags */}
-          <div className="flex flex-wrap gap-1.5">
-            {project.tags.slice(0, 2).map((tag) => (
-              <span
-                key={tag}
-                className="text-[0.68rem] px-2 py-0.5 rounded-full font-medium
-                           bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.06)]
-                           text-ink-muted"
+          {/* Content Section */}
+          <div className="p-5">
+            {/* Title */}
+            <h3 className="font-display text-lg font-700 text-ink-primary mb-2 tracking-tight
+                           group-hover:text-white transition-colors flex items-center justify-between">
+              {project.title}
+              <motion.div
+                animate={{ x: hovered ? 4 : 0 }}
+                transition={{ duration: 0.2 }}
+                className="text-ink-subtle"
               >
-                {tag}
-              </span>
-            ))}
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M4 12L12 4M12 4H6M12 4v6" stroke="currentColor" 
+                    strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </motion.div>
+            </h3>
+
+            {/* Description */}
+            <p className="text-ink-muted text-[0.85rem] leading-relaxed line-clamp-2 mb-4">
+              {project.description}
+            </p>
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-1.5">
+              {project.tags.slice(0, 3).map((tag) => (
+                <span
+                  key={tag}
+                  className="text-[0.68rem] px-2 py-0.5 rounded-full font-medium
+                             bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.06)]
+                             text-ink-muted"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </motion.article>

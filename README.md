@@ -1,199 +1,240 @@
-# Cinova Visuals — Portfolio
+# Cinova Visuals Portfolio
 
-Premium SaaS motion design portfolio built with **Next.js 14 + Tailwind CSS + Framer Motion**.
+A modern portfolio website for showcasing motion design work including SaaS explainers, product launch videos, and UI animations.
 
----
-
-## 🚀 Quick Start
-
-```bash
-# 1. Install dependencies
-npm install
-
-# 2. Run locally
-npm run dev
-# → http://localhost:3000
-
-# 3. Build for production
-npm run build
-npm start
-```
+Built with Next.js, Tailwind CSS, and Framer Motion.
 
 ---
 
-## 📁 Folder Structure
+## Adding New Projects (Beginner Guide)
 
-```
-src/
-├── app/
-│   ├── layout.jsx       ← SEO metadata, root HTML
-│   ├── page.jsx         ← Assembles all sections
-│   └── globals.css      ← Design tokens, base styles, utilities
-├── components/
-│   ├── Navbar.jsx       ← Navigation + mobile menu
-│   ├── Hero.jsx         ← Hero section + animations
-│   ├── Marquee.jsx      ← Scrolling text strip
-│   ├── Projects.jsx     ← Projects grid (reads from data)
-│   ├── ProjectCard.jsx  ← Individual project card
-│   ├── VideoEmbed.jsx   ← Reusable video player
-│   ├── About.jsx        ← About + stats + tools
-│   ├── Contact.jsx      ← Social cards + book-a-call
-│   ├── Footer.jsx       ← Footer + back-to-top
-│   └── CursorGlow.jsx   ← Cursor ambient glow
-└── data/
-    ├── projects.js      ← ✅ YOUR PROJECT DATA LIVES HERE
-    └── links.js         ← ✅ ALL SOCIAL / CTA LINKS LIVE HERE
-```
+Adding a new project is simple! Follow these steps:
 
----
+### Step 1: Prepare Your Thumbnail Image
 
-## ✏️ How to Edit Content
+1. Create a thumbnail image for your project
+   - **Recommended size:** 1920x1080 pixels (16:9 ratio)
+   - **Formats:** `.jpg`, `.png`, or `.webp`
+2. Name it something simple like `my-project.jpg` (no spaces, use dashes)
+3. Place the image in the **`public/thumbnails/`** folder
 
-### Change Social Links / CTA URLs
-**File:** `src/data/links.js`
-```js
-export const links = {
-  instagram: 'https://www.instagram.com/YOUR_HANDLE/',
-  twitter:   'https://x.com/YOUR_HANDLE',
-  bookCall:  'https://cal.com/YOUR_LINK',
-}
-```
+### Step 2: Add Your Project Details
 
-### Change Hero Headline / Subtext
-**File:** `src/components/Hero.jsx`
-Look for the comments:
-- `// ── MAIN HEADLINE — edit text here`
-- `// ── SUBTEXT — edit paragraph here`
+1. Open the file: **`src/data/projects.js`**
+2. Scroll down to find the comment that says `ADD YOUR NEW PROJECTS BELOW`
+3. Copy this template and paste it there:
 
-### Change the Projects
-**File:** `src/data/projects.js` ← **this is the only file you need**
-
-Each project looks like this:
-```js
+```javascript
 {
-  id: 'my-project',            // unique slug
-  title: 'My Project',
+  id: 'your-project-id',
+  title: 'Your Project Title',
   category: 'SaaS Explainer',
-  description: 'What this project is about...',
-  videoEmbedUrl: 'https://player.vimeo.com/video/123456789',
-  thumbnailUrl: '/thumbnails/my-project.jpg',
-  tags: ['SaaS', 'UI Animation'],
-  size: 'wide',                // 'wide' = full width, 'normal' = half
-  accentColor: '#5B8EF0',
-}
+  description: 'Describe your project in 1-2 sentences.',
+  videoEmbedUrl: 'https://player.vimeo.com/video/YOUR_VIDEO_ID',
+  thumbnailUrl: '/thumbnails/your-thumbnail.jpg',
+  tags: ['Tag 1', 'Tag 2', 'Tag 3'],
+},
 ```
+
+4. Fill in your details:
+
+| Field | What to Put | Example |
+|-------|-------------|---------|
+| `id` | Unique identifier (lowercase, use dashes, no spaces) | `'my-cool-project'` |
+| `title` | The name of your project | `'Acme App Explainer'` |
+| `category` | One of the categories listed below | `'SaaS Explainer'` |
+| `description` | 1-2 sentences about the project | `'An explainer video for...'` |
+| `videoEmbedUrl` | Your Vimeo embed URL (see below) | `'https://player.vimeo.com/video/123456789'` |
+| `thumbnailUrl` | Path to your thumbnail image | `'/thumbnails/acme-explainer.jpg'` |
+| `tags` | 2-3 short descriptive tags | `['SaaS', 'Explainer', 'Tech']` |
+
+5. **Save the file** - Your project will appear automatically!
+
+### Available Categories
+
+Use one of these exactly as written:
+- `'SaaS Explainer'`
+- `'UI Animation'`
+- `'Product Launch'`
+- `'Concept Spec'`
+- `'Motion System'`
 
 ---
 
-## 🎬 How to Swap Video Embeds
+## How to Get Your Vimeo Embed URL
 
-### Vimeo
-1. Go to your Vimeo video → Share → Embed
-2. Copy the URL, e.g. `https://player.vimeo.com/video/123456789`
-3. Paste into `videoEmbedUrl` in `src/data/projects.js`
+1. Go to your video on Vimeo
+2. Click the **Share** button
+3. Click **Embed**
+4. Look for the URL that starts with `https://player.vimeo.com/video/`
+5. Copy just that URL part
 
-Optional autoplay params:
-```
-?autoplay=1&muted=1&loop=1    ← silent ambient loop
-?autoplay=0                   ← no autoplay (default)
-?title=0&byline=0&portrait=0  ← hide Vimeo UI
-```
+**Example:** `https://player.vimeo.com/video/123456789`
 
-### YouTube
-1. Copy your video ID from the URL (e.g. `dQw4w9WgXcQ`)
-2. Set `videoEmbedUrl` to:
-```
-https://www.youtube.com/embed/dQw4w9WgXcQ
-```
-Optional params:
-```
-?autoplay=1&mute=1&loop=1&playlist=VIDEO_ID
-?controls=0   ← hide controls
-?rel=0        ← no related videos
-```
+### Using YouTube Instead
 
-### Change Thumbnail
-- Use any public image URL, or
-- Put your image in `/public/thumbnails/project.jpg`
-- Set `thumbnailUrl: '/thumbnails/project.jpg'`
+If you prefer YouTube:
+1. Go to your YouTube video
+2. Click **Share** > **Embed**
+3. Copy the URL from the embed code (starts with `https://www.youtube.com/embed/`)
+
+**Example:** `https://www.youtube.com/embed/dQw4w9WgXcQ`
 
 ---
 
-## 🎨 How to Change Colors / Theme
+## Complete Example
 
-**File:** `src/app/globals.css` — `:root` section
-```css
-:root {
-  --bg-primary:    #070708;    ← main background
-  --accent-blue:   #5B8EF0;   ← primary accent
-  --accent-violet: #9B7AF5;   ← secondary accent
-  --ink-primary:   #F2F1EE;   ← main text
-  --ink-muted:     #7A7A8A;   ← secondary text
-}
+Here's a full example of adding a new project:
+
+**1. Save your thumbnail as:** `public/thumbnails/acme-explainer.jpg`
+
+**2. Add this to `src/data/projects.js`:**
+
+```javascript
+{
+  id: 'acme-explainer',
+  title: 'Acme SaaS Explainer',
+  category: 'SaaS Explainer',
+  description: 'A 60-second explainer showing how Acme simplifies project management for remote teams.',
+  videoEmbedUrl: 'https://player.vimeo.com/video/987654321',
+  thumbnailUrl: '/thumbnails/acme-explainer.jpg',
+  tags: ['SaaS', 'Project Management', 'Remote Work'],
+},
 ```
-Also update `tailwind.config.js` → `theme.extend.colors` to match.
+
+**3. Save the file** - Done! Your project now appears on the website.
 
 ---
 
-## 🔤 How to Change Fonts
+## Project Display Order
 
-1. Update the `@import` URL in `src/app/globals.css` to your Google Fonts choice
-2. Update `--font-display` and `--font-body` CSS vars
-3. Update `tailwind.config.js` → `fontFamily`
+- **Homepage:** Shows the first 3 projects in your list
+- **Projects Page:** Shows all projects with category filtering
+
+To change which projects appear on the homepage, reorder them in `projects.js`. The first 3 will be featured.
 
 ---
 
-## ➕ How to Add a New Project
+## Removing a Project
 
 1. Open `src/data/projects.js`
-2. Copy an existing object, paste it in the array
-3. Fill in your details — it automatically appears in the grid
-
-## ➖ How to Remove a Project
-
-Delete the `{ ... }` block for that project from the array.
+2. Find the project you want to remove
+3. Delete the entire block from `{` to `},`
+4. Optionally delete the thumbnail from `public/thumbnails/`
+5. Save the file
 
 ---
 
-## 🚢 Deploy to Vercel
+## Customizing Your Portfolio
 
-```bash
-# Install Vercel CLI (once)
-npm i -g vercel
+### Changing Social Links
 
-# Deploy from project root
-vercel
+**File:** `src/data/links.js`
 
-# Follow prompts, then for production:
-vercel --prod
+```javascript
+export const links = {
+  instagram: 'https://www.instagram.com/YOUR_HANDLE/',
+  twitter: 'https://x.com/YOUR_HANDLE',
+  bookCall: 'https://cal.com/YOUR_LINK',
+}
 ```
 
-Or: connect your GitHub repo to vercel.com for automatic deploys.
+### Changing Colors
+
+**File:** `src/app/globals.css`
+
+Look for the `:root` section to change colors:
+```css
+--accent-blue: #3b82f6;    /* Main accent color */
+--bg-primary: #0a0a0a;     /* Background color */
+```
+
+### Changing Your Logo
+
+Replace the file at `public/images/cinova-logo.png` with your own logo.
 
 ---
 
-## 🔧 Customize Animations
+## File Structure
 
-**File:** `src/components/Hero.jsx` → `containerVariants`, `itemVariants`
-**File:** `src/components/ProjectCard.jsx` → `whileHover` props
-**Global easing:** search for `[0.22, 1, 0.36, 1]` — this is the cinematic ease
+```
+public/
+  thumbnails/           <- Your project thumbnails go here
+  images/
+    cinova-logo.png     <- Your logo
 
-To make animations faster/slower: change `duration` values in `transition` objects.
-To disable on mobile: wrap with `if (window.innerWidth < 768) return {}` in useEffect.
+src/
+  data/
+    projects.js         <- Edit this to add/remove projects
+    links.js            <- Your social media links
+  
+  app/
+    page.jsx            <- Homepage
+    projects/
+      page.jsx          <- All projects page
+      [id]/page.jsx     <- Individual project detail page
+  
+  components/           <- UI components
+```
 
 ---
 
-## 📋 Checklist Before Launch
+## Running Locally
 
-- [ ] Replace all `videoEmbedUrl` values with real Vimeo/YouTube links
-- [ ] Add real thumbnail images to `/public/thumbnails/`
-- [ ] Update bio text in `About.jsx`
-- [ ] Confirm `links.js` has correct Instagram / Twitter / Cal.com URLs
-- [ ] Update SEO metadata in `layout.jsx`
-- [ ] Add your OG image to `/public/og-image.jpg` and reference in metadata
-- [ ] Test on mobile (Chrome DevTools responsive mode)
-- [ ] Deploy to Vercel
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+Visit `http://localhost:3000` to see your site.
 
 ---
 
-Built with ♥ for Cinova Visuals
+## Deploying to Vercel
+
+The easiest way to deploy:
+
+1. Push your code to GitHub
+2. Go to [vercel.com](https://vercel.com)
+3. Import your GitHub repository
+4. Click Deploy
+
+Your site will be live with automatic updates whenever you push changes!
+
+---
+
+## Troubleshooting
+
+**Thumbnail not showing?**
+- Make sure the image is in `public/thumbnails/`
+- Check that the path in `thumbnailUrl` matches exactly (case-sensitive)
+- Use forward slashes: `/thumbnails/image.jpg`
+
+**Video not playing?**
+- Verify the Vimeo/YouTube URL is the embed format
+- Vimeo: `https://player.vimeo.com/video/...`
+- YouTube: `https://www.youtube.com/embed/...`
+
+**Project not appearing?**
+- Check for missing commas between projects
+- Make sure the `id` is unique (no duplicates)
+- Save the file after making changes
+
+---
+
+## Need More Help?
+
+If you get stuck, check:
+1. The browser console for errors (Right-click > Inspect > Console)
+2. That all commas and brackets are in the right places
+3. That file paths match exactly (they're case-sensitive)
+
+---
+
+Built with care for Cinova Visuals
