@@ -44,7 +44,7 @@ export const projects = [
     // ── REPLACE THIS WITH YOUR VIMEO/YOUTUBE EMBED URL ────────
     // Example Vimeo:   https://player.vimeo.com/video/123456789
     // Example YouTube: https://www.youtube.com/embed/dQw4w9WgXcQ
-    videoEmbedUrl: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1190775920?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;loop=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Gemini_Sfx"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>',
+    videoEmbedUrl: 'https://vimeo.com/1190775920?share=copy&fl=sv&fe=ci',
     // ── REPLACE WITH YOUR THUMBNAIL ───────────────────────────
     // Or use: '/thumbnails/feedbask.jpg' (image in /public/thumbnails/)
     thumbnailUrl: 'https://i.vimeocdn.com/video/452001751-b57ff30c3a40ea5e2f3e53ffe7f8e08bf8904d73124e9f2e2b1c8dc65e2e9f88_1280x720.jpg',
