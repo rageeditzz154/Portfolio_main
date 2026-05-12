@@ -40,7 +40,7 @@ export default function Footer() {
               className="rounded-lg"
             />
             <span className="font-display font-700 text-ink-primary text-sm tracking-tight">
-              Cinova<span className="text-accent-blue">.</span>
+              Cinova Visuals
             </span>
           </Link>
 

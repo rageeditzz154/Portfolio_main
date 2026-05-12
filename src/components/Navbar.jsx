@@ -61,8 +61,7 @@ export default function Navbar() {
               className="rounded-lg"
             />
             <span className="font-display font-700 text-[0.95rem] tracking-tight text-ink-primary group-hover:text-white transition-colors">
-              Cinova
-              <span className="text-accent-blue ml-0.5">.</span>
+              Cinova Visuals
             </span>
           </Link>
 
