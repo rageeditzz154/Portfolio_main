@@ -1,0 +1,213 @@
+/* ─────────────────────────────────────────────────────────────
+   CINOVA VISUALS — Global Styles
+   To change fonts: update the @import URL and the font-family
+   vars below, then update tailwind.config.js fontFamily.
+   ───────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Design Tokens ─────────────────────────────────────── */
+:root {
+  --bg-primary:   #070708;
+  --bg-secondary: #0E0E10;
+  --bg-card:      #111114;
+
+  --accent-blue:   #5B8EF0;
+  --accent-violet: #9B7AF5;
+  --accent-glow:   rgba(91, 142, 240, 0.18);
+
+  --ink-primary:  #F2F1EE;
+  --ink-muted:    #7A7A8A;
+  --ink-subtle:   #3E3E4A;
+
+  --border-thin:  rgba(255, 255, 255, 0.055);
+  --border-soft:  rgba(255, 255, 255, 0.08);
+
+  --radius-card:  1.25rem;
+  --radius-btn:   0.625rem;
+
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'Plus Jakarta Sans', sans-serif;
+}
+
+/* ─── Base Reset ────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--ink-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--ink-subtle); border-radius: 4px; }
+
+/* ─── Selection ─────────────────────────────────────────────── */
+::selection {
+  background: rgba(91, 142, 240, 0.28);
+  color: var(--ink-primary);
+}
+
+/* ─── Utility Classes ───────────────────────────────────────── */
+@layer utilities {
+  .font-display { font-family: var(--font-display); }
+  .font-body    { font-family: var(--font-body); }
+
+  /* Gradient text */
+  .text-gradient {
+    background: linear-gradient(135deg, #F2F1EE 0%, #9B7AF5 55%, #5B8EF0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Gradient text — warm edition for accent words */
+  .text-gradient-warm {
+    background: linear-gradient(135deg, #c8b8f5 0%, #5B8EF0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glass card surface */
+  .glass {
+    background: rgba(17, 17, 20, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-thin);
+  }
+
+  /* Thin border */
+  .border-thin { border: 1px solid var(--border-thin); }
+  .border-soft { border: 1px solid var(--border-soft); }
+
+  /* Ambient glow behind elements */
+  .glow-blue {
+    box-shadow: 0 0 60px rgba(91, 142, 240, 0.12),
+                0 0 120px rgba(91, 142, 240, 0.06);
+  }
+  .glow-violet {
+    box-shadow: 0 0 60px rgba(155, 122, 245, 0.12),
+                0 0 120px rgba(155, 122, 245, 0.06);
+  }
+
+  /* Noise grain overlay */
+  .noise::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+    border-radius: inherit;
+  }
+
+  /* Section spacing */
+  .section-py { padding-top: 7rem; padding-bottom: 7rem; }
+
+  @media (max-width: 768px) {
+    .section-py { padding-top: 4rem; padding-bottom: 4rem; }
+  }
+}
+
+/* ─── Video Embed Container ─────────────────────────────────── */
+/* Maintains 16:9 aspect ratio and premium presentation */
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: var(--radius-card);
+}
+
+/* ─── Tag Pill ──────────────────────────────────────────────── */
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  background: rgba(91, 142, 240, 0.08);
+  border: 1px solid rgba(91, 142, 240, 0.18);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent-blue);
+}
+
+/* ─── Button Base ───────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  background: var(--accent-blue);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  border-radius: var(--radius-btn);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background: #4a7de0;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(91, 142, 240, 0.35);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  background: transparent;
+  color: var(--ink-primary);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  border-radius: var(--radius-btn);
+  border: 1px solid var(--border-soft);
+  transition: all 0.28s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-ghost:hover {
+  border-color: rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.04);
+  transform: translateY(-2px);
+}
