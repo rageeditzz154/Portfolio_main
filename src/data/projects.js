@@ -37,15 +37,14 @@
 
 export const projects = [
   {
-    id: 'feedbask',
-    title: 'Feedbask',
+    id: 'gemini',
+    title: 'Gemini',
     category: 'SaaS Explainer',
-    description:
-      'A cinematic product explainer that turns Feedbask\'s feedback intelligence platform into a compelling visual story — built to convert curious founders into users.',
+    description:'A motion concept for Gemini Guided Learning exploring how AI can make learning feel more interactive',
     // ── REPLACE THIS WITH YOUR VIMEO/YOUTUBE EMBED URL ────────
     // Example Vimeo:   https://player.vimeo.com/video/123456789
     // Example YouTube: https://www.youtube.com/embed/dQw4w9WgXcQ
-    videoEmbedUrl: 'https://player.vimeo.com/video/76979871?autoplay=0&title=0&byline=0&portrait=0',
+    videoEmbedUrl: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1190775920?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;loop=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Gemini_Sfx"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>',
     // ── REPLACE WITH YOUR THUMBNAIL ───────────────────────────
     // Or use: '/thumbnails/feedbask.jpg' (image in /public/thumbnails/)
     thumbnailUrl: 'https://i.vimeocdn.com/video/452001751-b57ff30c3a40ea5e2f3e53ffe7f8e08bf8904d73124e9f2e2b1c8dc65e2e9f88_1280x720.jpg',
