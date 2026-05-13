@@ -17,7 +17,7 @@ export const projects = [
     id: 'gemini',
     
     // PROJECT TITLE - What you want to call this project
-    title: 'Gemini Guided Learning',
+    title: 'Gemini',
     
     // CATEGORY - One of: 'SaaS Explainer', 'UI Animation', 'Product Launch', 'Concept Spec', 'Motion System'
     category: 'SaaS Explainer',
