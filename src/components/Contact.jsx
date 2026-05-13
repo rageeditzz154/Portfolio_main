@@ -2,7 +2,7 @@
 
 // ─────────────────────────────────────────────────────────────
 // CONTACT SECTION — src/components/Contact.jsx
-// Clean minimal contact section
+// Clean minimal contact section with glassmorphic style
 // ─────────────────────────────────────────────────────────────
 
 import { motion } from 'framer-motion'
@@ -43,7 +43,7 @@ export default function Contact() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-accent-blue text-sm font-display font-600 tracking-[0.1em] uppercase mb-3"
+          className="text-accent-blue text-sm font-sans font-semibold tracking-[0.1em] uppercase mb-3"
         >
           Get In Touch
         </motion.p>
@@ -54,7 +54,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="font-display font-800 text-[clamp(2rem,4.5vw,3.5rem)]
+          className="font-sans font-bold text-[clamp(2rem,4.5vw,3.5rem)]
                      leading-[1] tracking-tight text-ink-primary mb-4"
         >
           Ready to move{' '}
@@ -107,16 +107,16 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="flex items-center gap-3 px-4 py-3 rounded-lg
-                         border border-thin bg-bg-card
-                         hover:border-[rgba(255,255,255,0.12)] hover:bg-bg-elevated
+              className="flex items-center gap-3 px-4 py-3 rounded-2xl
+                         border border-white/10 bg-white/[0.03] backdrop-blur-sm
+                         hover:border-white/20 hover:bg-white/[0.06]
                          transition-all duration-200 group"
             >
               <span className="text-ink-muted group-hover:text-ink-primary transition-colors">
                 {social.icon}
               </span>
               <div>
-                <div className="font-display font-600 text-[0.85rem] text-ink-primary">
+                <div className="font-sans font-semibold text-[0.85rem] text-ink-primary">
                   {social.name}
                 </div>
                 <div className="text-ink-muted text-[0.75rem]">{social.handle}</div>

@@ -3,6 +3,7 @@
 // Edit the metadata below to update SEO title, description, etc.
 // ─────────────────────────────────────────────────────────────
 
+import { GeistSans } from 'geist/font/sans'
 import './globals.css'
 
 // ── SEO METADATA — edit these values ──────────────────────────
@@ -37,8 +38,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className="bg-bg-primary text-ink-primary font-body antialiased overflow-x-hidden">
+    <html lang="en" className={`scroll-smooth ${GeistSans.variable}`}>
+      <body className="bg-bg-primary text-ink-primary font-sans antialiased overflow-x-hidden">
         {children}
       </body>
     </html>

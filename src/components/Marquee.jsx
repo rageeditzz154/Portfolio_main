@@ -36,8 +36,8 @@ export default function Marquee() {
         {doubled.map((item, i) => (
           <span
             key={i}
-            className="inline-flex items-center gap-3 text-[0.72rem] font-display
-                       font-600 text-ink-subtle tracking-[0.1em] uppercase"
+            className="inline-flex items-center gap-3 text-[0.72rem] font-sans
+                       font-semibold text-ink-subtle tracking-[0.1em] uppercase"
           >
             {item}
             <span className="w-1 h-1 rounded-full bg-accent-blue/50 inline-block" />

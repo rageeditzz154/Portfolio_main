@@ -2,7 +2,7 @@
 
 // ─────────────────────────────────────────────────────────────
 // PROJECT CARD — src/components/ProjectCard.jsx
-// Displays project thumbnail, title, and info. Clicks to detail page.
+// Displays project thumbnail, title, and info with glassmorphic style.
 // ─────────────────────────────────────────────────────────────
 
 import { useState } from 'react'
@@ -25,29 +25,31 @@ export default function ProjectCard({ project, index }) {
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: index * 0.08 }}
         onHoverStart={() => setHovered(true)}
         onHoverEnd={() => setHovered(false)}
-        className="relative rounded-xl overflow-hidden border border-thin
-                   bg-bg-card group cursor-pointer h-full"
+        className="relative rounded-2xl overflow-hidden 
+                   border border-white/10
+                   bg-white/[0.03] backdrop-blur-sm
+                   group cursor-pointer h-full
+                   transition-all duration-300"
         style={{
           boxShadow: hovered
-            ? '0 20px 60px rgba(0,0,0,0.4)'
-            : '0 4px 20px rgba(0,0,0,0.2)',
-          transform: hovered ? 'translateY(-2px)' : 'translateY(0)',
-          transition: 'all 0.25s ease',
+            ? '0 20px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)'
+            : '0 4px 20px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05)',
+          transform: hovered ? 'translateY(-4px)' : 'translateY(0)',
         }}
       >
         {/* Hover glow effect */}
         <motion.div
-          className="absolute inset-0 rounded-xl pointer-events-none z-0"
+          className="absolute inset-0 rounded-2xl pointer-events-none z-0"
           animate={{ opacity: hovered ? 1 : 0 }}
           transition={{ duration: 0.3 }}
           style={{
-            background: 'radial-gradient(ellipse at top left, rgba(59, 130, 246, 0.08) 0%, transparent 60%)',
+            background: 'radial-gradient(ellipse at top left, rgba(91, 142, 240, 0.1) 0%, transparent 60%)',
           }}
         />
 
         <div className="relative z-10">
           {/* Thumbnail Section */}
-          <div className="relative aspect-video overflow-hidden bg-bg-secondary">
+          <div className="relative aspect-video overflow-hidden bg-bg-secondary rounded-t-2xl">
             {hasThumbnail ? (
               <Image
                 src={project.thumbnailUrl}
@@ -90,14 +92,17 @@ export default function ProjectCard({ project, index }) {
 
             {/* Category badge */}
             <div className="absolute top-3 left-3">
-              <span className="tag-pill text-[0.68rem]">{project.category}</span>
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-[0.68rem] font-medium
+                               bg-white/10 backdrop-blur-md border border-white/20 text-white">
+                {project.category}
+              </span>
             </div>
           </div>
 
           {/* Content Section */}
           <div className="p-5">
             {/* Title */}
-            <h3 className="font-display text-lg font-700 text-ink-primary mb-2 tracking-tight
+            <h3 className="font-sans text-lg font-semibold text-ink-primary mb-2 tracking-tight
                            group-hover:text-white transition-colors flex items-center justify-between">
               {project.title}
               <motion.div
@@ -122,8 +127,8 @@ export default function ProjectCard({ project, index }) {
               {project.tags.slice(0, 3).map((tag) => (
                 <span
                   key={tag}
-                  className="text-[0.68rem] px-2 py-0.5 rounded-full font-medium
-                             bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.06)]
+                  className="text-[0.68rem] px-2.5 py-1 rounded-full font-medium
+                             bg-white/[0.04] border border-white/[0.08]
                              text-ink-muted"
                 >
                   {tag}

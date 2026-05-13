@@ -31,11 +31,12 @@ module.exports = {
         },
       },
       // ─────────────────────────────────────────────
-      // FONTS — defined in globals.css via Google Fonts
+      // FONTS — Geist as primary, system fonts as fallback
       // ─────────────────────────────────────────────
       fontFamily: {
-        display: ['Syne', 'sans-serif'],
-        body:    ['Plus Jakarta Sans', 'sans-serif'],
+        sans: ['var(--font-geist-sans)', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        display: ['var(--font-geist-sans)', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        body: ['var(--font-geist-sans)', 'system-ui', '-apple-system', 'sans-serif'],
       },
       // ─────────────────────────────────────────────
       // SPACING & SIZING
@@ -59,11 +60,22 @@ module.exports = {
         'float':      'float 6s ease-in-out infinite',
         'float-slow': 'float 9s ease-in-out infinite',
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'typing': 'typing 2s steps(20) infinite',
+        'blink': 'blink 1s step-end infinite',
       },
       keyframes: {
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%':      { transform: 'translateY(-12px)' },
+        },
+        typing: {
+          '0%': { width: '0' },
+          '50%': { width: '100%' },
+          '100%': { width: '0' },
+        },
+        blink: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0' },
         },
       },
     },
