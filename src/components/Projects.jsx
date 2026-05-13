@@ -11,6 +11,11 @@ import ProjectCard from './ProjectCard'
 import Link from 'next/link'
 
 export default function Projects() {
+  const handleShowAllClick = (e) => {
+    // Let the link navigate normally
+    // The projects page has its own SmoothScroll wrapper
+  }
+
   return (
     <section id="projects" className="section-py relative overflow-hidden projects-gradient">
 
@@ -32,10 +37,10 @@ export default function Projects() {
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <p className="text-accent-blue text-sm font-display font-600 tracking-[0.1em] uppercase mb-3">
+          <p className="text-accent-blue text-sm font-sans font-semibold tracking-[0.1em] uppercase mb-3">
             Selected Work
           </p>
-          <h2 className="font-display font-800 text-[clamp(2rem,4.5vw,3.5rem)]
+          <h2 className="font-sans font-bold text-[clamp(2rem,4.5vw,3.5rem)]
                          leading-[1] tracking-tight text-ink-primary">
             Recent Projects
           </h2>
@@ -58,7 +63,13 @@ export default function Projects() {
         >
           <Link
             href="/projects"
-            className="btn-ghost group"
+            onClick={handleShowAllClick}
+            className="group inline-flex items-center gap-2 py-3 px-6 
+                       rounded-full border border-white/10
+                       bg-white/5 backdrop-blur-sm
+                       text-ink-primary font-medium text-sm
+                       transition-all duration-200
+                       hover:bg-white/10 hover:border-white/20"
           >
             Show All Projects
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" 

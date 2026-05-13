@@ -2,7 +2,7 @@
 
 // ─────────────────────────────────────────────────────────────
 // FOOTER — src/components/Footer.jsx
-// Clean minimal footer with logo
+// Clean minimal footer with glassmorphic style
 // ─────────────────────────────────────────────────────────────
 
 import { motion } from 'framer-motion'
@@ -20,10 +20,16 @@ const footerLinks = [
 ]
 
 export default function Footer() {
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
+  const scrollToTop = () => {
+    if (window.lenis) {
+      window.lenis.scrollTo(0, { duration: 1.2 })
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
 
   return (
-    <footer className="relative border-t border-[rgba(255,255,255,0.05)] py-8">
+    <footer className="relative border-t border-white/5 py-8">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Top row */}
@@ -39,7 +45,7 @@ export default function Footer() {
               height={28}
               className="rounded-lg"
             />
-            <span className="font-display font-700 text-ink-primary text-sm tracking-tight">
+            <span className="font-sans font-semibold text-ink-primary text-sm tracking-tight">
               Cinova Visuals
             </span>
           </Link>
@@ -65,8 +71,9 @@ export default function Footer() {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-8 h-8 rounded-lg border border-thin flex items-center justify-center
-                         text-ink-muted hover:text-ink-primary hover:border-[rgba(255,255,255,0.12)]
+              className="w-8 h-8 rounded-xl border border-white/10 flex items-center justify-center
+                         bg-white/[0.03]
+                         text-ink-muted hover:text-ink-primary hover:border-white/20
                          transition-colors"
               aria-label="Instagram"
             >
@@ -83,8 +90,9 @@ export default function Footer() {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-8 h-8 rounded-lg border border-thin flex items-center justify-center
-                         text-ink-muted hover:text-ink-primary hover:border-[rgba(255,255,255,0.12)]
+              className="w-8 h-8 rounded-xl border border-white/10 flex items-center justify-center
+                         bg-white/[0.03]
+                         text-ink-muted hover:text-ink-primary hover:border-white/20
                          transition-colors"
               aria-label="X / Twitter"
             >
@@ -97,8 +105,9 @@ export default function Footer() {
               onClick={scrollToTop}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-8 h-8 rounded-lg border border-thin flex items-center justify-center
-                         text-ink-muted hover:text-ink-primary hover:border-[rgba(255,255,255,0.12)]
+              className="w-8 h-8 rounded-xl border border-white/10 flex items-center justify-center
+                         bg-white/[0.03]
+                         text-ink-muted hover:text-ink-primary hover:border-white/20
                          transition-colors ml-1"
               aria-label="Back to top"
             >
@@ -112,7 +121,7 @@ export default function Footer() {
 
         {/* Bottom row */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center
-                        justify-between gap-2 pt-5 border-t border-[rgba(255,255,255,0.04)]">
+                        justify-between gap-2 pt-5 border-t border-white/5">
           <p className="text-ink-subtle text-[0.72rem]">
             &copy; {year} Cinova Visuals. All rights reserved.
           </p>

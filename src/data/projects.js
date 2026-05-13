@@ -30,8 +30,7 @@ export const projects = [
     
     // THUMBNAIL - Path to your thumbnail image in public/thumbnails/
     // Example: '/thumbnails/my-project.jpg' or '/thumbnails/my-project.png'
-    // Leave empty '' to use default placeholder
-    thumbnailUrl: '',
+    thumbnailUrl: '/thumbnails/default-1.jpg',
     
     // TAGS - 2-3 short tags describing the work
     tags: ['Product Explainer', 'SaaS', 'UI Animation'],
@@ -40,18 +39,18 @@ export const projects = [
     id: 'feedbask',
     title: 'Feedbask',
     category: 'Concept Spec',
-    description: '',
+    description: 'A conceptual spec video showcasing feedback collection workflows with clean motion design and intuitive user flows.',
     videoEmbedUrl: 'https://player.vimeo.com/video/1191850183',
-    thumbnailUrl: '',
+    thumbnailUrl: '/thumbnails/default-2.jpg',
     tags: ['Product Explainer', 'SaaS', 'UI Animation'],
   },
   {
     id: 'uber',
     title: 'Uber',
     category: 'SaaS Explainer',
-    description: '',
+    description: 'A sleek motion design piece exploring ride-sharing interfaces with smooth transitions and engaging micro-interactions.',
     videoEmbedUrl: 'https://player.vimeo.com/video/1191852242',
-    thumbnailUrl: '',
+    thumbnailUrl: '/thumbnails/default-3.jpg',
     tags: ['UI Animation'],
   },
   {
@@ -60,7 +59,7 @@ export const projects = [
     category: 'Motion System',
     description: 'A modular onboarding animation kit — reusable motion patterns for SaaS products that need to feel welcoming, fast, and human.',
     videoEmbedUrl: 'https://player.vimeo.com/video/336812686?autoplay=0&title=0&byline=0&portrait=0',
-    thumbnailUrl: '',
+    thumbnailUrl: '/thumbnails/default-4.jpg',
     tags: ['Motion System', 'Onboarding', 'UI Kit'],
   },
   {
@@ -69,7 +68,7 @@ export const projects = [
     category: 'Product Launch',
     description: 'A cinematic product launch video designed to create excitement and showcase key features with dynamic motion graphics and storytelling.',
     videoEmbedUrl: 'https://player.vimeo.com/video/336812686?autoplay=0&title=0&byline=0&portrait=0',
-    thumbnailUrl: '',
+    thumbnailUrl: '/thumbnails/default-5.jpg',
     tags: ['Product Launch', 'Cinematic', 'SaaS'],
   },
   {
@@ -78,7 +77,7 @@ export const projects = [
     category: 'UI Animation',
     description: 'A collection of polished micro-interactions that bring interfaces to life. From button states to loading animations, every detail matters.',
     videoEmbedUrl: 'https://player.vimeo.com/video/248688844?autoplay=0&title=0&byline=0&portrait=0',
-    thumbnailUrl: '',
+    thumbnailUrl: '/thumbnails/default-6.jpg',
     tags: ['Micro-interactions', 'UI/UX', 'Details'],
   },
 

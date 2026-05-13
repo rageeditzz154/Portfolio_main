@@ -5,7 +5,7 @@
 // Comprehensive project showcase with thumbnails and filtering
 // ─────────────────────────────────────────────────────────────
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { projects, categories } from '../../data/projects'
 import ProjectCard from '../../components/ProjectCard'
@@ -18,10 +18,26 @@ import Link from 'next/link'
 
 export default function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState('All')
+  const gridRef = useRef(null)
 
   const filteredProjects = activeCategory === 'All'
     ? projects
     : projects.filter(p => p.category === activeCategory)
+
+  // Smooth scroll to grid when category changes
+  const handleCategoryChange = (category) => {
+    setActiveCategory(category)
+    
+    // Use Lenis for smooth scroll if available
+    if (window.lenis && gridRef.current) {
+      setTimeout(() => {
+        window.lenis.scrollTo(gridRef.current, {
+          offset: -120,
+          duration: 0.8,
+        })
+      }, 100)
+    }
+  }
 
   return (
     <SmoothScroll>
@@ -42,7 +58,12 @@ export default function ProjectsPage() {
             >
               <Link 
                 href="/" 
-                className="btn-back mb-6 inline-flex"
+                className="mb-6 inline-flex items-center gap-2 py-2 px-4
+                           rounded-full border border-white/10
+                           bg-white/5 backdrop-blur-sm
+                           text-ink-muted font-medium text-sm
+                           transition-all duration-200
+                           hover:bg-white/10 hover:text-ink-primary"
               >
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                   <path d="M11.5 7H2.5M6.5 3L2.5 7l4 4" stroke="currentColor" 
@@ -51,10 +72,10 @@ export default function ProjectsPage() {
                 Back to Home
               </Link>
 
-              <p className="text-accent-blue text-sm font-display font-600 tracking-[0.1em] uppercase mb-3">
+              <p className="text-accent-blue text-sm font-sans font-semibold tracking-[0.1em] uppercase mb-3">
                 Portfolio
               </p>
-              <h1 className="font-display font-800 text-[clamp(2.2rem,5vw,4rem)]
+              <h1 className="font-sans font-bold text-[clamp(2.2rem,5vw,4rem)]
                              leading-[1] tracking-tight text-ink-primary mb-4">
                 My Work
               </h1>
@@ -75,11 +96,11 @@ export default function ProjectsPage() {
                 {categories.map((category) => (
                   <button
                     key={category}
-                    onClick={() => setActiveCategory(category)}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200
+                    onClick={() => handleCategoryChange(category)}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200
                       ${activeCategory === category
-                        ? 'bg-accent-blue text-white'
-                        : 'bg-[rgba(255,255,255,0.04)] text-ink-muted hover:bg-[rgba(255,255,255,0.08)] hover:text-ink-primary border border-[rgba(255,255,255,0.06)]'
+                        ? 'bg-ink-primary text-bg-primary'
+                        : 'bg-white/[0.04] text-ink-muted hover:bg-white/[0.08] hover:text-ink-primary border border-white/[0.08]'
                       }`}
                   >
                     {category}
@@ -106,6 +127,7 @@ export default function ProjectsPage() {
             {/* Projects Grid */}
             <AnimatePresence mode="wait">
               <motion.div 
+                ref={gridRef}
                 key={activeCategory}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -130,7 +152,7 @@ export default function ProjectsPage() {
                   No projects in this category yet.
                 </p>
                 <button
-                  onClick={() => setActiveCategory('All')}
+                  onClick={() => handleCategoryChange('All')}
                   className="text-accent-blue hover:underline"
                 >
                   View all projects
@@ -145,8 +167,8 @@ export default function ProjectsPage() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="mt-20 text-center"
             >
-              <div className="inline-block p-8 rounded-2xl bg-[rgba(59,130,246,0.05)] border border-[rgba(59,130,246,0.1)]">
-                <h3 className="font-display font-700 text-xl text-ink-primary mb-2">
+              <div className="inline-block p-8 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm">
+                <h3 className="font-sans font-semibold text-xl text-ink-primary mb-2">
                   Like what you see?
                 </h3>
                 <p className="text-ink-muted text-[0.92rem] mb-5">
@@ -156,7 +178,12 @@ export default function ProjectsPage() {
                   href="https://cal.com/cinova-visuals/30-minute-meeting"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-primary inline-flex"
+                  className="inline-flex items-center gap-2 py-3 px-6 
+                             rounded-full
+                             bg-ink-primary text-bg-primary
+                             font-medium text-sm
+                             transition-all duration-200
+                             hover:bg-white hover:scale-[1.02]"
                 >
                   Book a Call
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">

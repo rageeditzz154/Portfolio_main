@@ -76,7 +76,7 @@ export default function Hero() {
           {/* Headline */}
           <motion.h1
             variants={itemVariants}
-            className="font-display font-800 leading-[0.95] tracking-tight mb-8"
+            className="font-sans font-bold leading-[0.95] tracking-tight mb-8"
           >
             <span className="block text-[clamp(3rem,8vw,7rem)] text-ink-primary">
               Motion Design
@@ -89,7 +89,7 @@ export default function Hero() {
           {/* Subtext */}
           <motion.p
             variants={itemVariants}
-            className="font-body text-ink-muted text-[clamp(1rem,1.5vw,1.15rem)]
+            className="text-ink-muted text-[clamp(1rem,1.5vw,1.15rem)]
                        leading-relaxed max-w-xl mb-10"
           >
             I create SaaS explainers, product launch videos, and UI animations
